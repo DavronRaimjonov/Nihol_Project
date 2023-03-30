@@ -1,11 +1,11 @@
-import React from "react";
-import Login from "./components/login/login";
+import { Navbar, Login } from "./components";
 
 const App = () => {
   return (
-    <div>
-      <Login />
-    </div>
+    <>
+      {/* <Login /> */}
+      <Navbar />
+    </>
   );
 };
 

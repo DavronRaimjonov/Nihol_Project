@@ -15,3 +15,7 @@ input::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
+
+body {
+  background-color: #f5f5f5;
+}

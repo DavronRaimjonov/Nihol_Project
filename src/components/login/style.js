@@ -75,7 +75,7 @@ Wrapper.Button = styled.div`
   font-size: 16px;
   color: rgb(255, 255, 255);
   padding: 0px 15px;
-  background: rgb(48, 104, 204);
+  background: linear-gradient(to right, #0575e6 0%, #021b79 51%, #0575e6 100%);
   margin-top: 50px;
   width: 80%;
   height: 50px;
