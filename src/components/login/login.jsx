@@ -1,36 +1,43 @@
 import React from "react";
 import { request } from "../../axios";
 import { Wrapper } from "./style";
-import { notification } from "antd";
+import { notify } from "../../Generic/notification";
+import { useOpen } from "../../hooks/useOpen";
+import { LoadingOutlined } from "@ant-design/icons";
 
 const Login = () => {
-  const [warningAnimation, setWarningAnimation] = React.useState(false);
+  const { open, isOpen, isClose } = useOpen(false);
+  const { open: load, isOpen: loadOpen, isClose: loadClose } = useOpen(false);
   const phoneRef = React.useRef();
   const passwordRef = React.useRef();
   const playAnim = () => {
-    setWarningAnimation(true);
+    isOpen();
     setTimeout(() => {
-      setWarningAnimation(false);
+      isClose();
     }, 1000);
   };
-  const authInfo = () => {
+
+  const keyDownDetect = (e) => {
+    if (e.key === "Enter" || e.type === "click") return authInfo();
+  };
+  const authInfo = async () => {
+    if (load) return;
     const phoneNumber = "+998" + phoneRef.current.input.value;
     const password = passwordRef.current.input.value;
     if (!phoneNumber || !password) {
-      notification.error({
-        message: "Пожалуйста заполните все поля!",
-      });
+      notify({ erorStatus: "filingEror" });
       return playAnim();
     }
     let userInfo = { password, phoneNumber };
     try {
-      const fetch = async () => {
-        const response = await request.post("/user/sign-in", userInfo);
-        console.log(response.data);
-      };
-      fetch();
+      loadOpen();
+      const { data } = await request.post("/user/sign-in", userInfo);
+      console.log(data);
+      loadClose();
     } catch (error) {
-      console.log(error.message);
+      const status = error?.response?.status;
+      if (status >= 400) notify({ erorStatus: status });
+      loadClose();
     }
   };
   return (
@@ -41,6 +48,7 @@ const Login = () => {
           Biz har kuni kechagidan ko'ra yaxshiroq xizmat ko'rsatishga intilamiz.
         </Wrapper.Description>
         <Wrapper.Input
+          maxLength={7}
           ref={phoneRef}
           addonBefore={"+998"}
           bordered={false}
@@ -51,9 +59,10 @@ const Login = () => {
           ref={passwordRef}
           bordered={false}
           placeholder={"Parol..."}
+          onKeyDown={keyDownDetect}
         />
-        <Wrapper.Button onClick={authInfo} warningAnimation={warningAnimation}>
-          Login
+        <Wrapper.Button onClick={keyDownDetect} warningAnimation={open}>
+          {load ? <LoadingOutlined /> : "Login"}
         </Wrapper.Button>
       </Wrapper.Container>
     </Wrapper>
