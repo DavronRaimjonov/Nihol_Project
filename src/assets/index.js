@@ -1,0 +1,10 @@
+export { default as AllUser } from "./icons/all_users.svg";
+export { default as Building } from "./icons/building.svg";
+export { default as Empty } from "./icons/empty_place.svg";
+export { default as EndTime } from "./icons/end_time.svg";
+export { default as HalfTime } from "./icons/half_time.svg";
+export { default as Luxury } from "./icons/luxury_room.svg";
+export { default as Mansion } from "./icons/mansion.svg";
+export { default as Ordinary } from "./icons/ordinary_room.svg";
+export { default as Report } from "./icons/report.svg";
+export { default as StartTime } from "./icons/start_time.svg";

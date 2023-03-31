@@ -2,17 +2,19 @@ import React from "react";
 import { Wrapper } from "./style";
 import { Dropdown } from "antd";
 import { useDropdownApi } from "../../Generic/dropdown-api/dropdown-api";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  const { items } = useDropdownApi();
+  const { linkItem } = useDropdownApi();
+
   return (
     <Wrapper>
       <Wrapper.Logo>NIHOL</Wrapper.Logo>
       <Dropdown
         menu={{
-          items,
+          items: linkItem(),
         }}
-        placement="bottomRight"
+        placement={"bottomRight"}
         trigger={["click"]}
       >
         <Wrapper.Avatar icon={"D"} />

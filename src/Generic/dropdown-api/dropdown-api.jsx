@@ -9,9 +9,9 @@ export const useDropdownApi = () => {
   const dropIconStyle = {
     fontSize: "18px",
   };
-  const items = [
+  const linkItem = () => [
     {
-      key: "1",
+      key: "0",
       label: (
         <DrowDownContentWrap>
           <SettingOutlined style={dropIconStyle} />
@@ -20,7 +20,7 @@ export const useDropdownApi = () => {
       ),
     },
     {
-      key: "2",
+      key: "1",
       label: (
         <DrowDownContentWrap>
           <TranslationOutlined style={dropIconStyle} />
@@ -29,7 +29,7 @@ export const useDropdownApi = () => {
       ),
     },
     {
-      key: "3",
+      key: "2",
       label: (
         <DrowDownContentWrap style={{ color: "red" }}>
           <LogoutOutlined style={{ ...dropIconStyle, color: "red" }} />
@@ -38,5 +38,5 @@ export const useDropdownApi = () => {
       ),
     },
   ];
-  return { items };
+  return { linkItem };
 };

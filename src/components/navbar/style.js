@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Avatar } from "antd";
+import { Link } from "react-router-dom";
 export const Wrapper = styled.nav`
   background: rgb(255, 255, 255);
   width: 100%;
@@ -11,10 +12,14 @@ export const Wrapper = styled.nav`
   align-items: center;
   -webkit-box-pack: justify;
   justify-content: space-between;
+  position: sticky;
+  top: 0;
 `;
 
-Wrapper.Logo = styled.div`
+Wrapper.Logo = styled(Link)`
   cursor: pointer;
+  text-decoration: none;
+  color: #000;
 `;
 Wrapper.Avatar = styled(Avatar)`
   cursor: pointer;
