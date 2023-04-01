@@ -14,6 +14,7 @@ export const Wrapper = styled.nav`
   justify-content: space-between;
   position: sticky;
   top: 0;
+  z-index: 999;
 `;
 
 Wrapper.Logo = styled(Link)`

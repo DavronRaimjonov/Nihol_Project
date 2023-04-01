@@ -4,8 +4,11 @@ import { Wrapper } from "./style";
 import { notify } from "../../Generic/notification";
 import { useOpen } from "../../hooks/useOpen";
 import { LoadingOutlined } from "@ant-design/icons";
+import { useNavigate } from "react-router-dom";
+import { setLocal } from "../../utils/storege";
 
 const Login = () => {
+  const navigate = useNavigate();
   const { open, isOpen, isClose } = useOpen(false);
   const { open: load, isOpen: loadOpen, isClose: loadClose } = useOpen(false);
   const phoneRef = React.useRef();
@@ -32,7 +35,8 @@ const Login = () => {
     try {
       loadOpen();
       const { data } = await request.post("/user/sign-in", userInfo);
-      console.log(data);
+      setLocal("token", data.data.token);
+      navigate("/");
       loadClose();
     } catch (error) {
       const status = error?.response?.status;
