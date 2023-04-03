@@ -26,4 +26,7 @@ Wrapper.Avatar = styled(Avatar)`
   cursor: pointer;
   background: rgb(245, 106, 0);
   font-size: 16px;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 `;

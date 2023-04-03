@@ -6,13 +6,16 @@ import { useOpen } from "../../hooks/useOpen";
 import { LoadingOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import { setLocal } from "../../utils/storege";
+import { formatPhone } from "../../hooks/phoneFormat";
 
 const Login = () => {
   const navigate = useNavigate();
   const { open, isOpen, isClose } = useOpen(false);
   const { open: load, isOpen: loadOpen, isClose: loadClose } = useOpen(false);
+  const [formatPhoneNumber, setFormatPhoneNumber] = React.useState("");
   const phoneRef = React.useRef();
   const passwordRef = React.useRef();
+  const reg = new RegExp("^[0-9]$");
   const playAnim = () => {
     isOpen();
     setTimeout(() => {
@@ -23,9 +26,15 @@ const Login = () => {
   const keyDownDetect = (e) => {
     if (e.key === "Enter" || e.type === "click") return authInfo();
   };
+
   const authInfo = async () => {
     if (load) return;
-    const phoneNumber = "+998" + phoneRef.current.input.value;
+    const phoneNumber =
+      "+998" +
+      phoneRef.current.input.value
+        .split("")
+        .filter((n) => reg.test(n))
+        .join("");
     const password = passwordRef.current.input.value;
     if (!phoneNumber || !password) {
       notify({ erorStatus: "filingEror" });
@@ -44,6 +53,9 @@ const Login = () => {
       loadClose();
     }
   };
+  const phoneFromatterNumber = (e) => {
+    setFormatPhoneNumber(formatPhone(e.target.value));
+  };
   return (
     <Wrapper>
       <Wrapper.Container>
@@ -52,12 +64,13 @@ const Login = () => {
           Biz har kuni kechagidan ko'ra yaxshiroq xizmat ko'rsatishga intilamiz.
         </Wrapper.Description>
         <Wrapper.Input
-          maxLength={7}
           ref={phoneRef}
           addonBefore={"+998"}
+          value={formatPhoneNumber}
           bordered={false}
+          onChange={phoneFromatterNumber}
           placeholder={"99 999 99 99"}
-          type={"number"}
+          type={"text"}
         />
         <Wrapper.InputPassword
           ref={passwordRef}
