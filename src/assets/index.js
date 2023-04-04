@@ -8,3 +8,4 @@ export { default as Mansion } from "./icons/mansion.svg";
 export { default as Ordinary } from "./icons/ordinary_room.svg";
 export { default as Report } from "./icons/report.svg";
 export { default as StartTime } from "./icons/start_time.svg";
+export { default as LeftIcon } from "./icons/left-icon";

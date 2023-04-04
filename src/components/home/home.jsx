@@ -23,7 +23,11 @@ const Home = () => {
       </Wrapper.Container>
       <Wrapper.Container>
         <Card title={"Time up"} image={StartTime} />
-        <Card title={"Empty places"} image={Empty} />
+        <Card
+          onClcik={() => navigate("/building-control")}
+          title={"Empty places"}
+          image={Empty}
+        />
       </Wrapper.Container>
       <Wrapper.Title>Reports:</Wrapper.Title>
       <Wrapper.Container>
