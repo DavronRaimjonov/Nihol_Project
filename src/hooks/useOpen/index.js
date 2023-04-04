@@ -1,6 +1,6 @@
 import React from "react";
 
-export const useOpen = (val) => {
+export const useOpen = (val = false) => {
   const [open, setOpen] = React.useState(val);
   const isOpen = () => setOpen(true);
   const isClose = () => setOpen(false);

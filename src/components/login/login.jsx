@@ -6,16 +6,16 @@ import { useOpen } from "../../hooks/useOpen";
 import { LoadingOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import { setLocal } from "../../utils/storege";
-import { formatPhone } from "../../hooks/phoneFormat";
+import { formatPhone } from "../../Generic/phoneFormat";
+import { useSignIn } from "react-auth-kit";
 
 const Login = () => {
+  const signIn = useSignIn();
   const navigate = useNavigate();
   const { open, isOpen, isClose } = useOpen(false);
   const { open: load, isOpen: loadOpen, isClose: loadClose } = useOpen(false);
   const [formatPhoneNumber, setFormatPhoneNumber] = React.useState("");
-  const phoneRef = React.useRef();
   const passwordRef = React.useRef();
-  const reg = new RegExp("^[0-9]$");
   const playAnim = () => {
     isOpen();
     setTimeout(() => {
@@ -29,12 +29,7 @@ const Login = () => {
 
   const authInfo = async () => {
     if (load) return;
-    const phoneNumber =
-      "+998" +
-      phoneRef.current.input.value
-        .split("")
-        .filter((n) => reg.test(n))
-        .join("");
+    const phoneNumber = "+998" + formatPhoneNumber.replace(/[^\d]/g, "");
     const password = passwordRef.current.input.value;
     if (!phoneNumber || !password) {
       notify({ erorStatus: "filingEror" });
@@ -44,17 +39,20 @@ const Login = () => {
     try {
       loadOpen();
       const { data } = await request.post("/user/sign-in", userInfo);
-      setLocal("token", data.data.token);
+      const { token, user } = data.data;
       navigate("/");
+      signIn({
+        token: token,
+        authState: user,
+        tokenType: "Bearer",
+        expiresIn: 4000,
+      });
       loadClose();
     } catch (error) {
       const status = error?.response?.status;
       if (status >= 400) notify({ erorStatus: status });
       loadClose();
     }
-  };
-  const phoneFromatterNumber = (e) => {
-    setFormatPhoneNumber(formatPhone(e.target.value));
   };
   return (
     <Wrapper>
@@ -64,13 +62,11 @@ const Login = () => {
           Biz har kuni kechagidan ko'ra yaxshiroq xizmat ko'rsatishga intilamiz.
         </Wrapper.Description>
         <Wrapper.Input
-          ref={phoneRef}
           addonBefore={"+998"}
           value={formatPhoneNumber}
           bordered={false}
-          onChange={phoneFromatterNumber}
-          placeholder={"99 999 99 99"}
-          type={"text"}
+          onChange={(e) => setFormatPhoneNumber(formatPhone(e.target.value))}
+          placeholder={"(99) 999-99-99"}
         />
         <Wrapper.InputPassword
           ref={passwordRef}

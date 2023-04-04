@@ -6,13 +6,7 @@ export const formatPhone = (val) => {
     return `(${phoneNumber.slice(0, 2)}) ${phoneNumber.slice(2)}`;
   }
   if (phoneNumber.length < 8) {
-    return `(${phoneNumber.slice(0, 2)}) ${phoneNumber.slice(
-      2,
-      5
-    )}-${phoneNumber.slice(5, 7)}`;
+    return `(${phoneNumber.slice(0, 2)}) ${phoneNumber.slice(2,5)}-${phoneNumber.slice(5, 7)}`;
   }
-  return `(${phoneNumber.slice(0, 2)}) ${phoneNumber.slice(
-    2,
-    5
-  )}-${phoneNumber.slice(5, 7)}-${phoneNumber.slice(7, 9)}`;
+  return `(${phoneNumber.slice(0, 2)}) ${phoneNumber.slice(2,5)}-${phoneNumber.slice(5, 7)}-${phoneNumber.slice(7, 9)}`;
 };
