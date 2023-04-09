@@ -1,45 +1,27 @@
-import React from "react";
 import { Wrapper } from "./style";
 import { Dropdown } from "antd";
 import { useDropdownApi } from "../../Generic/dropdown-api/dropdown-api";
-import { useNavigate } from "react-router-dom";
-import { removeItem } from "../../utils/storege";
-import { Modal } from "antd";
-import { useOpen } from "../../hooks/useOpen";
-import { useSignOut } from "react-auth-kit";
-
+import LogOutModal from "../log-out-modal";
+import { useDispatch } from "react-redux";
+import { switchLogout } from "../../redux/modal-slice";
 const Navbar = () => {
+  const dispatch = useDispatch();
   const { linkItem } = useDropdownApi();
-  const navigate = useNavigate();
-  const { open, isClose, isOpen } = useOpen();
-  const signOut = useSignOut();
-
-  const logOut = () => {
-    removeItem("token");
-    signOut();
-    return navigate("/login");
-  };
+  const settingHendler = () => dispatch(switchLogout());
   return (
-    <Wrapper>
-      <Wrapper.Logo to={"/"}>NIHOL</Wrapper.Logo>
-      <Dropdown
-        menu={{ items: linkItem({ isOpen }) }}
-        placement={"bottomRight"}
-        trigger={["click"]}
-      >
-        <Wrapper.Avatar icon={"D"} />
-      </Dropdown>
-      <Modal
-        okText={"Log out"}
-        cancelText={"Close"}
-        open={open}
-        onOk={logOut}
-        onCancel={isClose}
-        title={"Warning"}
-      >
-        <p>Are you sure?</p>
-      </Modal>
-    </Wrapper>
+    <>
+      <LogOutModal />
+      <Wrapper>
+        <Wrapper.Logo to={"/"}>NIHOL</Wrapper.Logo>
+        <Dropdown
+          menu={{ items: linkItem({ settingHendler }) }}
+          placement={"bottomRight"}
+          trigger={["click"]}
+        >
+          <Wrapper.Avatar icon={"D"} />
+        </Dropdown>
+      </Wrapper>
+    </>
   );
 };
 

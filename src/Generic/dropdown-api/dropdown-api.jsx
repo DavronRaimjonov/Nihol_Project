@@ -9,7 +9,7 @@ export const useDropdownApi = () => {
   const dropIconStyle = {
     fontSize: "18px",
   };
-  const linkItem = ({ isOpen }) => [
+  const linkItem = ({ settingHendler }) => [
     {
       key: "0",
       label: (
@@ -31,7 +31,7 @@ export const useDropdownApi = () => {
     {
       key: "2",
       label: (
-        <DrowDownContentWrap onClick={isOpen} style={{ color: "red" }}>
+        <DrowDownContentWrap onClick={settingHendler} style={{ color: "red" }}>
           <LogoutOutlined style={{ ...dropIconStyle, color: "red" }} />
           Log out
         </DrowDownContentWrap>

@@ -13,27 +13,35 @@ const Home = () => {
       <Wrapper.Container>
         <Card
           onClcik={() => navigate("/all-users")}
-          title={"All users"}
+          title={t("home_page.card_title_first")}
           image={AllUser}
         />
 
         <Card
-          onClcik={() => navigate("/middle-users")}
-          title={"Half time"}
+          onClcik={() => navigate("/half-time")}
+          title={t("home_page.card_title_second")}
           image={HalfTime}
         />
       </Wrapper.Container>
       <Wrapper.Container>
-        <Card title={"Time up"} image={StartTime} />
+        <Card
+          onClcik={() => navigate("/time-up")}
+          title={t("home_page.card_title_third")}
+          image={StartTime}
+        />
         <Card
           onClcik={() => navigate("/building-control")}
-          title={"Empty places"}
+          title={t("home_page.card_title_four")}
           image={Empty}
         />
       </Wrapper.Container>
-      <Wrapper.Title>Reports:</Wrapper.Title>
+      <Wrapper.Title>{t("home_page.second_title")}:</Wrapper.Title>
       <Wrapper.Container>
-        <Card title={"Report"} image={Report} />
+        <Card
+          onClcik={() => navigate("/repost")}
+          title={t("home_page.card_title_seven")}
+          image={Report}
+        />
       </Wrapper.Container>
     </Wrapper>
   );
