@@ -1,4 +1,4 @@
-export const ru = {
+const Ru = {
   home_page: {
     title: "Разделы",
     card_title_first: "Все пользователи",
@@ -9,3 +9,4 @@ export const ru = {
     card_title_seven: "Отчет",
   },
 };
+export default Ru;

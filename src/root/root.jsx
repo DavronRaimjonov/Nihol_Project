@@ -4,20 +4,17 @@ import MainLayout from "../layout/main-layout";
 import { RequireAuth } from "react-auth-kit";
 import i18next from "i18next";
 import { initReactI18next } from "react-i18next";
-import { en } from "../utils/locale/eng";
-import { ru } from "../utils/locale/rus";
-import { uzKrill } from "../utils/locale/uzkrill";
-import { uzLotin } from "../utils/locale/uzb";
 import { useSelector } from "react-redux";
 import { path } from "../utils/path";
+import { En, Ru, UzKrill, UzLotin } from "../utils/locale";
 const Root = () => {
   const { lang } = useSelector((state) => state.locale);
   i18next.use(initReactI18next).init({
     resources: {
-      en: { translation: en },
-      rus: { translation: ru },
-      uzKrill: { translation: uzKrill },
-      uzLotin: { translation: uzLotin },
+      en: { translation: En },
+      rus: { translation: Ru },
+      uzKrill: { translation: UzKrill },
+      uzLotin: { translation: UzLotin },
     },
     lng: lang,
     fallbackLng: lang,

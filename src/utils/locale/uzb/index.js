@@ -1,4 +1,4 @@
-export const uzLotin = {
+const UzLotin = {
   home_page: {
     title: "Bo'limlar",
     card_title_first: "Barcha foydalanuvchilar",
@@ -9,3 +9,4 @@ export const uzLotin = {
     card_title_seven: "Hisobot",
   },
 };
+export default UzLotin;

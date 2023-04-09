@@ -1,4 +1,4 @@
-export const en = {
+const En = {
   home_page: {
     title: "Sections",
     card_title_first: "All users",
@@ -9,3 +9,5 @@ export const en = {
     card_title_seven: "Report",
   },
 };
+
+export default En;

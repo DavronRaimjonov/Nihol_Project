@@ -18,3 +18,8 @@ export const TitleCard = styled.div`
   color: rgb(0, 0, 0);
   margin: 40px;
 `;
+export const DropdownCenter = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+`;

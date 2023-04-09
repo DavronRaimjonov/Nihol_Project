@@ -9,7 +9,7 @@ export const useDropdownApi = () => {
   const dropIconStyle = {
     fontSize: "18px",
   };
-  const linkItem = ({ settingHendler }) => [
+  const linkItem = ({ settingHendler, localegHendler }) => [
     {
       key: "0",
       label: (
@@ -22,7 +22,7 @@ export const useDropdownApi = () => {
     {
       key: "1",
       label: (
-        <DrowDownContentWrap>
+        <DrowDownContentWrap onClick={localegHendler}>
           <TranslationOutlined style={dropIconStyle} />
           Change language
         </DrowDownContentWrap>

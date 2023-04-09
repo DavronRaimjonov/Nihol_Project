@@ -1,4 +1,4 @@
-export const uzKrill = {
+const UzKrill = {
   home_page: {
     title: "Бўлимлар",
     card_title_first: "Барча фойдаланувчилар",
@@ -9,3 +9,5 @@ export const uzKrill = {
     card_title_seven: "Ҳисобот",
   },
 };
+
+export default UzKrill;
