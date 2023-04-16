@@ -7,6 +7,7 @@ import { initReactI18next } from "react-i18next";
 import { useSelector } from "react-redux";
 import { path } from "../utils/path";
 import { En, Ru, UzKrill, UzLotin } from "../utils/locale";
+
 const Root = () => {
   const { lang } = useSelector((state) => state.locale);
   i18next.use(initReactI18next).init({
@@ -29,9 +30,19 @@ const Root = () => {
           </RequireAuth>
         }
       >
-        {path.map(({ path, id, Componenet }) => (
-          <Route key={id} path={path} element={<Componenet />} />
-        ))}
+        {path.map(({ path, Componenet, id, hasChild = false, children }) =>
+          !hasChild ? (
+            <Route path={path} key={id} element={<Componenet />} />
+          ) : (
+            <Route key={id} path={path} element={<Componenet />}>
+              {children.map(
+                ({ path, Componenet, id, hasChild = false, children }) => (
+                  <Route path={path} key={id} element={<Componenet />} />
+                )
+              )}
+            </Route>
+          )
+        )}
       </Route>
       <Route path="login" element={<Login />} />
       <Route path="*" element={<NotFound />} />

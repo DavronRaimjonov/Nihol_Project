@@ -5,7 +5,6 @@ import { notify } from "../../Generic/notification";
 import { useOpen } from "../../hooks/useOpen";
 import { LoadingOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
-import { setLocal } from "../../utils/storege";
 import { formatPhone } from "../../Generic/phoneFormat";
 import { useSignIn } from "react-auth-kit";
 

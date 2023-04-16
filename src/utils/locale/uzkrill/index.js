@@ -8,6 +8,12 @@ const UzKrill = {
     second_title: "Ҳисоботлар",
     card_title_seven: "Ҳисобот",
   },
+  building_types: {
+    title: "Бино турлари",
+    card_ordinary: "Оддий хоналар",
+    card_luxury: "Ҳашаматли хоналар",
+    card_cotteges: "Коттеглар",
+  },
 };
 
 export default UzKrill;

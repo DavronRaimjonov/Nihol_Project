@@ -3,9 +3,12 @@ import {
   BuildingControl,
   HalfTimes,
   Home,
+  OrdinaryRooms,
   Repost,
   TimeUp,
 } from "../components";
+import Cottages from "../components/building-control/cotteges";
+import LuxuryRooms from "../components/building-control/luxury-rooms";
 
 export const path = [
   {
@@ -20,14 +23,33 @@ export const path = [
   },
   {
     id: 3,
-    Componenet: BuildingControl,
-    path: "/building-control",
-  },
-  {
-    id: 4,
     Componenet: TimeUp,
     path: "/time-up",
   },
+  {
+    id: 4,
+    Componenet: BuildingControl,
+    path: "/building-control",
+    hasChild: true,
+    children: [
+      {
+        id: 4.1,
+        path: "ordinary-rooms",
+        Componenet: OrdinaryRooms,
+      },
+      {
+        id: 4.2,
+        path: "luxury-rooms",
+        Componenet: LuxuryRooms,
+      },
+      {
+        id: 4.3,
+        path: "cotteges",
+        Componenet: Cottages,
+      },
+    ],
+  },
+
   {
     id: 5,
     Componenet: HalfTimes,

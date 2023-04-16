@@ -1,12 +1,12 @@
 import { Modal, Segmented } from "antd";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useSegmentedApi } from "../../Generic/segmented-api";
-import { DropdownCenter } from "../../Generic/style";
-import { store } from "../../redux";
-import { switchLocaleLang } from "../../redux/locale-slice";
-import { switchLanguage } from "../../redux/modal-slice";
-import { setLocal } from "../../utils/storege";
+import { useSegmentedApi } from "../../../Generic/segmented-api";
+import { DropdownCenter } from "../../../Generic/style";
+import { store } from "../../../redux";
+import { switchLocaleLang } from "../../../redux/locale-slice";
+import { switchLanguage } from "../../../redux/modal-slice";
+import { setLocal } from "../../../utils/storege";
 
 const Localing = () => {
   store.subscribe(() => {

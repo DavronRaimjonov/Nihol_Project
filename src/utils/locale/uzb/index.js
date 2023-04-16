@@ -8,5 +8,11 @@ const UzLotin = {
     second_title: "Hisobotlar",
     card_title_seven: "Hisobot",
   },
+  building_types: {
+    title: "Bino turlari",
+    card_ordinary: "Oddiy xonalar",
+    card_luxury: "Hashamatli xonalar",
+    card_cotteges: "Kotteglar",
+  },
 };
 export default UzLotin;

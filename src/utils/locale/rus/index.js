@@ -8,5 +8,11 @@ const Ru = {
     second_title: "Отчеты",
     card_title_seven: "Отчет",
   },
+  building_types: {
+    title: "Типы зданий",
+    card_ordinary: "Обычные номера",
+    card_luxury: "Роскошные номера",
+    card_cotteges: "Коттеджи",
+  },
 };
 export default Ru;

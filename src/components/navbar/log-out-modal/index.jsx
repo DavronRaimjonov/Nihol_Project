@@ -2,8 +2,8 @@ import { Modal } from "antd";
 import { useSignOut } from "react-auth-kit";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { switchLogout } from "../../redux/modal-slice";
-import { removeItem } from "../../utils/storege";
+import { switchLogout } from "../../../redux/modal-slice";
+import { removeItem } from "../../../utils/storege";
 const LogOutModal = () => {
   const { logoutModalVisblity } = useSelector((state) => state.modal);
   const dispatch = useDispatch();
