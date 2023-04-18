@@ -36,9 +36,16 @@ const Root = () => {
           ) : (
             <Route key={id} path={path} element={<Componenet />}>
               {children.map(
-                ({ path, Componenet, id, hasChild = false, children }) => (
-                  <Route path={path} key={id} element={<Componenet />} />
-                )
+                ({ path, Componenet, id, hasChild = false, children }) =>
+                  !hasChild ? (
+                    <Route path={path} key={id} element={<Componenet />} />
+                  ) : (
+                    <Route key={id} path={path} element={<Componenet />}>
+                      {children.map(({ path, Componenet, id }) => (
+                        <Route path={path} key={id} element={<Componenet />} />
+                      ))}
+                    </Route>
+                  )
               )}
             </Route>
           )

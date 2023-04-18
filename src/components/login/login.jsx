@@ -7,8 +7,10 @@ import { LoadingOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import { formatPhone } from "../../Generic/phoneFormat";
 import { useSignIn } from "react-auth-kit";
-
+import { useAxios } from "../../hooks/useAxios";
+import { setLocal } from "../../utils/storege";
 const Login = () => {
+  const axios = useAxios();
   const signIn = useSignIn();
   const navigate = useNavigate();
   const { open, isOpen, isClose } = useOpen(false);
@@ -37,15 +39,21 @@ const Login = () => {
     let userInfo = { password, phoneNumber };
     try {
       loadOpen();
-      const { data } = await request.post("/user/sign-in", userInfo);
-      const { token, user } = data.data;
-      navigate("/");
+      // const { data } = await request.post("/user/sign-in", userInfo);
+      let response = await axios({
+        url: "/user/sign-in",
+        method: "POST",
+        body: userInfo,
+      });
+      const { token, user } = response.data.data;
       signIn({
         token: token,
         authState: user,
         tokenType: "Bearer",
         expiresIn: 4000,
       });
+      setLocal("token", token);
+      navigate("/");
       loadClose();
     } catch (error) {
       const status = error?.response?.status;

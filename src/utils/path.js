@@ -1,5 +1,6 @@
 import {
   AllUsers,
+  Building2,
   BuildingControl,
   HalfTimes,
   Home,
@@ -36,6 +37,8 @@ export const path = [
         id: 4.1,
         path: "ordinary-rooms",
         Componenet: OrdinaryRooms,
+        hasChild: true,
+        children: [{ id: " 4.1.1", path: "2", Componenet: Building2 }],
       },
       {
         id: 4.2,

@@ -1,15 +1,16 @@
 import axios from "axios";
-const { VITE_APP_BASE_URL } = process.env;
+import { getLocal } from "../../utils/storege";
+const { VITE_APP_BASE_URL } = import.meta.env;
 export const useAxios = () => {
   return async ({ url, body, header, method = "GET" }) => {
-    axios({
+    return await axios({
       url: `${VITE_APP_BASE_URL}${url}`,
       method,
       data: {
         ...body,
       },
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Authorization: `Bearer ${getLocal("token")}`,
         "Content-Type": "application/json",
         "Allow-Control-Origin": true,
         ...header,
