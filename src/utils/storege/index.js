@@ -18,6 +18,6 @@ export const setLocal = (key, value) => {
   }
 };
 
-export const removeItem = (key)=>{
-  return localStorage.removeItem(key)
-}
+export const removeItem = (key) => {
+  return localStorage.removeItem(key);
+};

@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getLocal } from "../../utils/storege";
+// import { getLocal } from "../../utils/storege";
 
-const initialState = getLocal("lang") || {
+const initialState = {
   lang: localStorage.getItem("lang") || "uzLotin",
 };
 const LocalSlice = createSlice({
@@ -9,7 +9,7 @@ const LocalSlice = createSlice({
   initialState,
   reducers: {
     switchLocaleLang(state, action) {
-      return { ...state, lang: action.payload };
+      state.lang = action.payload;
     },
   },
 });

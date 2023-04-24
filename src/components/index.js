@@ -11,3 +11,4 @@ export { default as HalfTimes } from "./half-times/half-time";
 export { default as TimeUp } from "./time-up/time-up";
 export { default as Repost } from "./repost/repsot";
 export { default as Building2 } from "./buildings/building2/building2";
+export { default as Building3 } from "./buildings/building3";

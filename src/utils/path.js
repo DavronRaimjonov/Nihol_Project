@@ -1,6 +1,7 @@
 import {
   AllUsers,
   Building2,
+  Building3,
   BuildingControl,
   HalfTimes,
   Home,
@@ -10,6 +11,7 @@ import {
 } from "../components";
 import Cottages from "../components/building-control/cotteges";
 import LuxuryRooms from "../components/building-control/luxury-rooms";
+import Building4 from "../components/buildings/building4";
 
 export const path = [
   {
@@ -20,17 +22,17 @@ export const path = [
   {
     id: 2,
     Componenet: AllUsers,
-    path: "/all-users",
+    path: "all-users",
   },
   {
     id: 3,
     Componenet: TimeUp,
-    path: "/time-up",
+    path: "time-up",
   },
   {
     id: 4,
     Componenet: BuildingControl,
-    path: "/building-control",
+    path: "building-control",
     hasChild: true,
     children: [
       {
@@ -38,12 +40,31 @@ export const path = [
         path: "ordinary-rooms",
         Componenet: OrdinaryRooms,
         hasChild: true,
-        children: [{ id: " 4.1.1", path: "2", Componenet: Building2 }],
+        children: [
+          {
+            id: " 4.1.1",
+            path: "2",
+            Componenet: Building2,
+          },
+          {
+            id: "4.2.2",
+            path: "4",
+            Componenet: Building4,
+          },
+        ],
       },
       {
         id: 4.2,
         path: "luxury-rooms",
         Componenet: LuxuryRooms,
+        hasChild: true,
+        children: [
+          {
+            id: "4.2.2",
+            path: "3",
+            Componenet: Building3,
+          },
+        ],
       },
       {
         id: 4.3,

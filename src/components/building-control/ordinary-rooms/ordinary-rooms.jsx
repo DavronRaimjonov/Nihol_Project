@@ -25,7 +25,11 @@ const OrdinaryRooms = () => {
               title={"2 Building"}
               image={Building}
             />
-            <Card title={"4 Building"} image={Building} />
+            <Card
+              title={"4 Building"}
+              onClcik={() => navigate(`${pathname}/4`)}
+              image={Building}
+            />
           </Wrapper.Container>
           <Wrapper.Container>
             <Card title={"6 Building"} image={Building} />

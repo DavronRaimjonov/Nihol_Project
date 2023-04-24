@@ -39,13 +39,13 @@ const Login = () => {
     let userInfo = { password, phoneNumber };
     try {
       loadOpen();
-      // const { data } = await request.post("/user/sign-in", userInfo);
-      let response = await axios({
-        url: "/user/sign-in",
-        method: "POST",
-        body: userInfo,
-      });
-      const { token, user } = response.data.data;
+      const { data } = await request.post("/user/sign-in", userInfo);
+      // let response = await axios({
+      //   url: "/user/sign-in",
+      //   method: "POST",
+      //   body: userInfo,
+      // });
+      const { token, user } = data.data;
       signIn({
         token: token,
         authState: user,

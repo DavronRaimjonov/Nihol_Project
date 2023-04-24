@@ -7,9 +7,13 @@ import { initReactI18next } from "react-i18next";
 import { useSelector } from "react-redux";
 import { path } from "../utils/path";
 import { En, Ru, UzKrill, UzLotin } from "../utils/locale";
-
+import { useEffect } from "react";
 const Root = () => {
   const { lang } = useSelector((state) => state.locale);
+  useEffect(() => {
+    const localLang = localStorage.getItem("lang");
+    !localLang && localStorage.setItem("lang", "uzLotin");
+  }, []);
   i18next.use(initReactI18next).init({
     resources: {
       en: { translation: En },

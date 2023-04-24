@@ -1,5 +1,5 @@
 import { Modal, Segmented } from "antd";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useSegmentedApi } from "../../../Generic/segmented-api";
 import { DropdownCenter } from "../../../Generic/style";
@@ -9,17 +9,18 @@ import { switchLanguage } from "../../../redux/modal-slice";
 import { setLocal } from "../../../utils/storege";
 
 const Localing = () => {
-  store.subscribe(() => {
-    setLocal("lang", store.getState().locale);
-  });
   const { segmentedApi } = useSegmentedApi();
-  const [language, setLanguage] = useState();
+  const [language, setLanguage] = useState(localStorage.getItem("lang"));
   const { langugageModalVisibilty } = useSelector((state) => state.modal);
   const dispatch = useDispatch();
   const edit = () => {
     dispatch(switchLocaleLang(language));
     dispatch(switchLanguage());
   };
+  store.subscribe(() => {
+    // setLocal("lang", store.getState().locale);
+    localStorage.setItem("lang", language);
+  });
 
   return (
     <Modal
