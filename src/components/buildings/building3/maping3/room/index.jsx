@@ -5,6 +5,7 @@ import { LoadingOutlined } from "@ant-design/icons";
 import { useDispatch } from "react-redux";
 import { switchUser } from "../../../../../redux/modal-slice";
 import { TimeResidual } from "../../../../../Generic/time";
+import { getBuildingData } from "../../../../../redux/building-data";
 const RoomComponent = ({ item }) => {
   const axios = useAxios();
   const { userID } = item;
@@ -20,7 +21,10 @@ const RoomComponent = ({ item }) => {
   const endData = datas?.endDate;
   const dispatch = useDispatch();
   const openUserModal = () => {
-    return !isLoading && dispatch(switchUser());
+    if (!isLoading) {
+      dispatch(switchUser());
+      dispatch(getBuildingData(datas));
+    }
   };
   const date = TimeResidual(arrivalData, endData);
   return (

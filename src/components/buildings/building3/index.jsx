@@ -8,7 +8,7 @@ import Maping3 from "./maping3";
 import UserModal from "../common/user-modal";
 const Building3 = () => {
   const axios = useAxios();
-  const { isLoading, data } = useQuery(
+  const { isLoading } = useQuery(
     "accsidint/3",
     () => {
       return axios({ url: "/accomodation/3/room" });

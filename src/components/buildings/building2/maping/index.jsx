@@ -1,6 +1,6 @@
 import React from "react";
 import { useQueryClient } from "react-query";
-import { MapWrapper, MapWrapperCart, Room } from "../../../../Generic/style";
+import { MapWrapper, MapWrapperCart } from "../../../../Generic/style";
 import BookedRoom from "./booked-room";
 import EmptyRoom from "./empty-rooms";
 import RoomComponent from "./room";
@@ -10,7 +10,7 @@ const Maping = () => {
   const { data } = queryClinet.getQueryData("accsidint/2");
   return (
     <MapWrapper>
-      {data.data.map((item) => (
+      {data?.data.map((item) => (
         <MapWrapperCart key={item._id}>
           <MapWrapperCart.Title>{item.roomNumber} Room</MapWrapperCart.Title>
           <MapWrapperCart.Container>
