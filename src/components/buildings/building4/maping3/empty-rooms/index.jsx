@@ -1,8 +1,7 @@
-import { Room } from "../../../../../Generic/style";
 import { Modal } from "antd";
-
-const { confirm } = Modal;
+import { Room } from "../../../../../Generic/style";
 const EmptyRoom = () => {
+  const { confirm } = Modal;
   const confirmModal = () => {
     return confirm({
       title: "Empty place",
@@ -13,6 +12,7 @@ const EmptyRoom = () => {
       cancelText: "Book",
     });
   };
+
   return <Room onClick={confirmModal} color={"green"}></Room>;
 };
 

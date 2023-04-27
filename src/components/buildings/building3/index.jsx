@@ -2,19 +2,16 @@ import { useNavigate } from "react-router-dom";
 import { LeftIcon } from "../../../assets";
 import { Wrapper } from "../../home/style";
 import { Spin } from "antd";
-import { useQuery } from "react-query";
-import { useAxios } from "../../../hooks/useAxios";
 import Maping3 from "./maping3";
 import UserModal from "../common/user-modal";
+import { useQueryHandler } from "../../../hooks/useQuery";
 const Building3 = () => {
-  const axios = useAxios();
-  const { isLoading } = useQuery(
-    "accsidint/3",
-    () => {
-      return axios({ url: "/accomodation/3/room" });
-    },
-    { refetchOnWindowFocus: false, keepPreviousData: true }
-  );
+  const useQuery = useQueryHandler();
+  const { isLoading } = useQuery({
+    url: "/accomodation/3/room",
+    pathName: "accsidint/3",
+  });
+
   const navigate = useNavigate();
   return (
     <Wrapper>

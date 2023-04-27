@@ -1,7 +1,7 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import { NotFound, Login } from "../components";
 import MainLayout from "../layout/main-layout";
-import { RequireAuth } from "react-auth-kit";
+import { RequireAuth, useSignOut } from "react-auth-kit";
 import i18next from "i18next";
 import { initReactI18next } from "react-i18next";
 import { useSelector } from "react-redux";
@@ -10,6 +10,7 @@ import { En, Ru, UzKrill, UzLotin } from "../utils/locale";
 import { useEffect } from "react";
 const Root = () => {
   const { lang } = useSelector((state) => state.locale);
+
   useEffect(() => {
     const localLang = localStorage.getItem("lang");
     !localLang && localStorage.setItem("lang", "uzLotin");

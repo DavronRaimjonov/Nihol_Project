@@ -4,9 +4,15 @@ import Card from "../../Generic/card/card";
 import { AllUser, HalfTime, StartTime, Empty, Report } from "../../assets";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useSignOut } from "react-auth-kit";
 const Home = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const signOut = useSignOut();
+  if (!localStorage.getItem("token")) {
+    navigate("/login");
+    signOut();
+  }
   return (
     <Wrapper>
       <Wrapper.Title>{t("home_page.title")}:</Wrapper.Title>

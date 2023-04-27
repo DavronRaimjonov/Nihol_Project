@@ -14,6 +14,15 @@ const UzKrill = {
     card_luxury: "Ҳашаматли хоналар",
     card_cotteges: "Коттеглар",
   },
+  ordinary_rooms: {
+    title: "Оддий хоналар",
+    card_2: "2 Бино",
+    card_4: "4 Бино",
+    card_6: "6 Бино",
+  },
+  building_room: {
+    room_1: "Хона",
+  },
 };
 
 export default UzKrill;

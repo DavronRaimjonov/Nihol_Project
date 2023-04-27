@@ -2,20 +2,15 @@ import { useNavigate } from "react-router-dom";
 import { LeftIcon } from "../../../assets";
 import { Wrapper } from "../../home/style";
 import { Spin } from "antd";
-import { useQuery } from "react-query";
-import { useAxios } from "../../../hooks/useAxios";
 import Maping from "./maping";
 import UserModal from "../common/user-modal";
+import { useQueryHandler } from "../../../hooks/useQuery";
 const Building2 = () => {
-  const axios = useAxios();
-  const { isLoading } = useQuery(
-    "accsidint/2",
-    () => {
-      return axios({ url: "/accomodation/2/room" });
-    },
-    { refetchOnWindowFocus: false, keepPreviousData: true }
-  );
-  // console.log(data);
+  const useQuery = useQueryHandler();
+  const { isLoading } = useQuery({
+    url: "/accomodation/2/room",
+    pathName: "accsidint/2",
+  });
   const navigate = useNavigate();
   return (
     <Wrapper>

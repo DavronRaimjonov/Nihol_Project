@@ -14,5 +14,14 @@ const Ru = {
     card_luxury: "Роскошные номера",
     card_cotteges: "Коттеджи",
   },
+  ordinary_rooms: {
+    title: "Обычные комнат",
+    card_2: "2 Здание",
+    card_4: "4 Здание",
+    card_6: "6 Здание",
+  },
+  building_room: {
+    room_1: "Комната",
+  },
 };
 export default Ru;

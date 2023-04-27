@@ -1,15 +1,55 @@
-import { useSelector } from "react-redux";
-import { TimeResidual, userDate } from "../../../../../Generic/time";
+import { Button } from "antd";
+import { Modal } from "antd";
+import dayjs from "dayjs";
+import { useDispatch, useSelector } from "react-redux";
+import { userDate } from "../../../../../Generic/time";
+import { useAxios } from "../../../../../hooks/useAxios";
+import { switchUser } from "../../../../../redux/modal-slice";
 import { ObservingWrap } from "./style";
 
 const Obseving = () => {
+  const { confirm } = Modal;
+  const dispatch = useDispatch();
   const { data } = useSelector((state) => state.buildingData);
-  const remaingDay = TimeResidual(data.arrivalDate, data.endDate);
+  const dateNow = new Date();
+  const remaingDay = dayjs(+data.endDate).diff(
+    new Date(
+      `${dateNow.getMonth() + 1}/${dateNow.getDate()}/${dateNow.getFullYear()}`
+    ),
+    "d"
+  );
+  const axios = useAxios();
+  const deleteUser = async () => {
+    const deleteData = {
+      roomNumber: data?.roomNumber,
+      clienteID: data?.clienteID,
+      _id: data?._id,
+    };
+    await axios({
+      url: `/accomodation/${buildingNum.slice(-1)}/delete-user`,
+      method: "DELETE",
+      body: deleteData,
+    });
+  };
+  const deleteModal = () => {
+    return confirm({
+      title: "Make sure!",
+      content: "This action cannot be undone after deleting!",
+      okText: "Delete",
+      cancelText: "Cacel",
+      onOk() {
+        deleteUser();
+        dispatch(switchUser());
+      },
+    });
+  };
+  const buildingNum = data?.buildingNumber;
   const birtDate = userDate(data.birthDate);
   const cameDate = userDate(data.arrivalDate);
   const endDate = userDate(data.endDate);
   const buildIndex = data.buildingNumber.slice(0, 1).toUpperCase();
   const build = buildIndex + data.buildingNumber.split("-").join(" ").slice(1);
+
   return (
     <ObservingWrap>
       <ObservingWrap.List>
@@ -72,6 +112,13 @@ const Obseving = () => {
         <ObservingWrap.Key>Room number:</ObservingWrap.Key>
         <ObservingWrap.Key>{data.roomNumber}</ObservingWrap.Key>
       </ObservingWrap.List>
+      <ObservingWrap.Buttons>
+        <Button onClick={() => dispatch(switchUser())}>Cancel</Button>
+        <Button type="primary">Move</Button>
+        <Button onClick={deleteModal} danger type="primary">
+          Delete
+        </Button>
+      </ObservingWrap.Buttons>
     </ObservingWrap>
   );
 };

@@ -18,3 +18,10 @@ ObservingWrap.Key = styled.div`
   flex: 1 1 0%;
   text-align: start;
 `;
+ObservingWrap.Buttons = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 20px;
+  margin-top: 20px;
+`;

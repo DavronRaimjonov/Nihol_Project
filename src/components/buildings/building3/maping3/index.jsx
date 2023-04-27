@@ -7,10 +7,10 @@ import RoomComponent from "./room";
 
 const Maping3 = () => {
   const queryClinet = useQueryClient();
-  const { data } = queryClinet.getQueryData("accsidint/3");
+  const data = queryClinet.getQueryData("accsidint/3");
   return (
     <MapWrapper>
-      {data.data.map((item) => (
+      {data?.map((item) => (
         <MapWrapperCart key={item._id}>
           <MapWrapperCart.Title>{item.roomNumber} Room</MapWrapperCart.Title>
           <MapWrapperCart.Container>

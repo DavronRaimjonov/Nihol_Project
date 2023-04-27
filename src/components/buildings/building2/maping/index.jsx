@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { useQueryClient } from "react-query";
 import { MapWrapper, MapWrapperCart } from "../../../../Generic/style";
 import BookedRoom from "./booked-room";
@@ -7,12 +8,15 @@ import RoomComponent from "./room";
 
 const Maping = () => {
   const queryClinet = useQueryClient();
-  const { data } = queryClinet.getQueryData("accsidint/2");
+  const { t } = useTranslation();
+  const data = queryClinet.getQueryData("accsidint/2");
   return (
     <MapWrapper>
-      {data?.data.map((item) => (
+      {data?.map((item) => (
         <MapWrapperCart key={item._id}>
-          <MapWrapperCart.Title>{item.roomNumber} Room</MapWrapperCart.Title>
+          <MapWrapperCart.Title>
+            {item.roomNumber} {t("building_room.room_1")}
+          </MapWrapperCart.Title>
           <MapWrapperCart.Container>
             {item.cliente.map((item) =>
               !item.userID && !item.isBooked ? (
