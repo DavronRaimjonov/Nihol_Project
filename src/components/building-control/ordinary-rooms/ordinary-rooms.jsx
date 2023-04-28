@@ -19,22 +19,22 @@ const OrdinaryRooms = () => {
         <>
           <TitleCard>
             <LeftIcon onClick={() => navigate("/building-control")} />
-            {t("ordinary_rooms.title")}
+            {t("building_types.card_ordinary")}
           </TitleCard>
           <Wrapper.Container>
             <Card
               onClcik={() => navigate(`${pathname}/2`)}
-              title={t("ordinary_rooms.card_2")}
+              title={`2 ${t("rooms.card_title")}`}
               image={Building}
             />
             <Card
-              title={t("ordinary_rooms.card_4")}
+              title={`4 ${t("rooms.card_title")}`}
               onClcik={() => navigate(`${pathname}/4`)}
               image={Building}
             />
           </Wrapper.Container>
           <Wrapper.Container>
-            <Card title={t("ordinary_rooms.card_6")} image={Building} />
+            <Card title={`6 ${t("rooms.card_title")}`} image={Building} />
           </Wrapper.Container>
         </>
       )}

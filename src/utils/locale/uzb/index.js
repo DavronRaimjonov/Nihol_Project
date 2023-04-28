@@ -1,4 +1,9 @@
 const UzLotin = {
+  navbar_modals: {
+    change_lang: "Tilni o'zgartirish",
+    logout: "Tark etish",
+    setting: "Sozlamalar",
+  },
   home_page: {
     title: "Bo'limlar",
     card_title_first: "Barcha foydalanuvchilar",
@@ -14,11 +19,8 @@ const UzLotin = {
     card_luxury: "Hashamatli xonalar",
     card_cotteges: "Kotteglar",
   },
-  ordinary_rooms: {
-    title: "Oddiy xonalar",
-    card_2: "2 Bino",
-    card_4: "4 Bino",
-    card_6: "6 Bino",
+  rooms: {
+    card_title: "Bino",
   },
   building_room: {
     room_1: "Xona",

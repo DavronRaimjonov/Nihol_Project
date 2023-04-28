@@ -1,4 +1,9 @@
 const Ru = {
+  navbar_modals: {
+    change_lang: "Изменить язык",
+    logout: "Выйти",
+    setting: "Настройки",
+  },
   home_page: {
     title: "Разделы",
     card_title_first: "Все пользователи",
@@ -10,15 +15,12 @@ const Ru = {
   },
   building_types: {
     title: "Типы зданий",
-    card_ordinary: "Обычные номера",
-    card_luxury: "Роскошные номера",
+    card_ordinary: "Обычные комнатa",
+    card_luxury: "Роскошные комнатa",
     card_cotteges: "Коттеджи",
   },
-  ordinary_rooms: {
-    title: "Обычные комнат",
-    card_2: "2 Здание",
-    card_4: "4 Здание",
-    card_6: "6 Здание",
+  rooms: {
+    card_title: "Здание",
   },
   building_room: {
     room_1: "Комната",

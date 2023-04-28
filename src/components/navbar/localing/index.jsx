@@ -1,14 +1,15 @@
 import { Modal, Segmented } from "antd";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useSegmentedApi } from "../../../Generic/segmented-api";
 import { DropdownCenter } from "../../../Generic/style";
 import { store } from "../../../redux";
 import { switchLocaleLang } from "../../../redux/locale-slice";
 import { switchLanguage } from "../../../redux/modal-slice";
-import { setLocal } from "../../../utils/storege";
 
 const Localing = () => {
+  const {t} = useTranslation()
   const { segmentedApi } = useSegmentedApi();
   const [language, setLanguage] = useState(localStorage.getItem("lang"));
   const { langugageModalVisibilty } = useSelector((state) => state.modal);
@@ -18,7 +19,6 @@ const Localing = () => {
     dispatch(switchLanguage());
   };
   store.subscribe(() => {
-    // setLocal("lang", store.getState().locale);
     localStorage.setItem("lang", language);
   });
 
@@ -26,7 +26,7 @@ const Localing = () => {
     <Modal
       open={langugageModalVisibilty}
       onCancel={() => dispatch(switchLanguage())}
-      title={"Change Language"}
+      title={t('navbar_modals.change_lang')}
       okText={"Edit"}
       onOk={edit}
     >

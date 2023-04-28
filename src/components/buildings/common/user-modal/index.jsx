@@ -5,11 +5,10 @@ import { switchUser } from "../../../../redux/modal-slice";
 import Obseving from "../user-modals/obseving";
 import BookedPlaces from "../user-modals/booked-palces";
 import Edit from "../user-modals/edit";
-import { useAxios } from "../../../../hooks/useAxios";
 const UserModal = () => {
   const [selected, useSelected] = useState("Observing");
   const { userModalVisibility } = useSelector((state) => state.modal);
- 
+
   const dispatch = useDispatch();
   return (
     <Modal
@@ -25,7 +24,7 @@ const UserModal = () => {
         onChange={(e) => useSelected(e)}
       />
       {selected === "Observing" ? (
-        <Obseving  />
+        <Obseving />
       ) : selected === "Booked places" ? (
         <BookedPlaces />
       ) : (

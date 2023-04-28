@@ -1,9 +1,13 @@
 import { Room } from "../../../../../Generic/style";
 import { Modal } from "antd";
+import { useDispatch } from "react-redux";
+import { switchCreatedUser } from "../../../../../redux/modal-slice";
 
 const { confirm } = Modal;
 const EmptyRoom = () => {
+  const dispatch = useDispatch();
   const confirmModal = () => {
+    dispatch(getBuildingData(data));
     return confirm({
       title: "Empty place",
       content:
@@ -11,6 +15,9 @@ const EmptyRoom = () => {
       closable: true,
       okText: "Add",
       cancelText: "Book",
+      onOk() {
+        dispatch(switchCreatedUser());
+      },
     });
   };
   return <Room onClick={confirmModal} color={"green"}></Room>;

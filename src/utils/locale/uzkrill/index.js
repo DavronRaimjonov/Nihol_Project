@@ -1,4 +1,9 @@
 const UzKrill = {
+  navbar_modals: {
+    change_lang: "Тилни ўзгартириш",
+    logout: "Тарк этиш",
+    setting: "Созламалар",
+  },
   home_page: {
     title: "Бўлимлар",
     card_title_first: "Барча фойдаланувчилар",
@@ -14,11 +19,9 @@ const UzKrill = {
     card_luxury: "Ҳашаматли хоналар",
     card_cotteges: "Коттеглар",
   },
-  ordinary_rooms: {
+  rooms: {
     title: "Оддий хоналар",
-    card_2: "2 Бино",
-    card_4: "4 Бино",
-    card_6: "6 Бино",
+    card_title: "Бино",
   },
   building_room: {
     room_1: "Хона",

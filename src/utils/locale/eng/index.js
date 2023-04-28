@@ -1,4 +1,9 @@
 const En = {
+  navbar_modals: {
+    change_lang: "Change Language",
+    logout: "Log Out",
+    setting: "Settings",
+  },
   home_page: {
     title: "Sections",
     card_title_first: "All users",
@@ -14,11 +19,8 @@ const En = {
     card_luxury: "Luxury Rooms",
     card_cotteges: "Cottages",
   },
-  ordinary_rooms: {
-    title: "Ordinary Rooms",
-    card_2: "2 Building",
-    card_4: "4 Building",
-    card_6: "6 Building",
+  rooms: {
+    card_title: "Building",
   },
   building_room: {
     room_1: "Room",

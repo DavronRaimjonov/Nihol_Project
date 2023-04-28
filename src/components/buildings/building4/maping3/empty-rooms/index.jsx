@@ -1,6 +1,8 @@
 import { Modal } from "antd";
+import { useDispatch } from "react-redux";
 import { Room } from "../../../../../Generic/style";
 const EmptyRoom = () => {
+  const dispatch = useDispatch();
   const { confirm } = Modal;
   const confirmModal = () => {
     return confirm({
@@ -10,6 +12,9 @@ const EmptyRoom = () => {
       closable: true,
       okText: "Add",
       cancelText: "Book",
+      onOk() {
+        dispatch(switchCreatedUser());
+      },
     });
   };
 
