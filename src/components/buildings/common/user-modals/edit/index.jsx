@@ -1,40 +1,36 @@
 import { Button, DatePicker, Form, Input, message } from "antd";
 import dayjs from "dayjs";
+import { useQueryClient } from "react-query";
+
 import { useDispatch, useSelector } from "react-redux";
-import { useAxios } from "../../../../../hooks/useAxios";
+import { useEditData } from "../../../../../hooks/useActions";
 import { switchUser } from "../../../../../redux/modal-slice";
 import { ObservingWrap } from "../obseving/style";
 
 const Edit = () => {
   const { RangePicker } = DatePicker;
+
   const { data } = useSelector((state) => state.buildingData);
+  const queryClient = useQueryClient();
+  const userData = queryClient.getQueryData(`user${data._id}`);
+  let dataPhoneNumber = userData.phoneNumber.slice(4);
   const dispatch = useDispatch();
-  const axios = useAxios();
+  const { mutate } = useEditData();
   const onFinish = (e) => {
     let birthDate = new Date(e.birthDate.$d).getTime();
     let arrivalDate = new Date(e.daterange[0].$d).getTime();
     let endDate = new Date(e.daterange[1].$d).getTime();
     delete e.daterange;
-    let editDate = {
+    let editData = {
+      ...userData,
       ...e,
       arrivalDate,
       endDate,
       birthDate,
       phoneNumber: "+998" + e.phoneNumber,
       hasVoucher: false,
-      roomNumber: data.roomNumber,
-      clienteID: data.clienteID,
-      _id: data._id,
     };
-    return axios({
-      url: `/accomodation/${data.roomNumber}/update-user`,
-      method: "POST",
-      body: editDate,
-    });
-  };
-
-  const onFinishFailed = (e) => {
-    message.error("Submit failed!");
+    return mutate({ editData, buildingNumber: userData.buildingNumber });
   };
 
   return (
@@ -42,15 +38,15 @@ const Edit = () => {
       style={{ marginTop: "20px" }}
       layout="vertical"
       onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
       initialValues={{
-        fullName: data.fullName,
-        birthDate: dayjs(data.birthDate),
-        passportID: data.passportID,
-        phoneNumber: data.phoneNumber,
-        address: data.address,
-        paidByCash: data.paidByCash,
-        paidByPlasticCard: data.paidByPlasticCard,
+        fullName: userData.fullName,
+        birthDate: dayjs(userData.birthDate),
+        passportID: userData.passportID,
+        phoneNumber: dataPhoneNumber,
+        address: userData.address,
+        paidByCash: userData.paidByCash,
+        paidByPlasticCard: userData.paidByPlasticCard,
+        daterange: [dayjs(+userData.arrivalDate), dayjs(+userData.endDate)],
       }}
     >
       <Form.Item

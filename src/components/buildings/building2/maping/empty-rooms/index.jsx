@@ -4,10 +4,10 @@ import { useDispatch } from "react-redux";
 import { switchCreatedUser } from "../../../../../redux/modal-slice";
 
 const { confirm } = Modal;
-const EmptyRoom = () => {
+const EmptyRoom = ({ item }) => {
+  // console.log(item);
   const dispatch = useDispatch();
   const confirmModal = () => {
-    dispatch(getBuildingData(data));
     return confirm({
       title: "Empty place",
       content:

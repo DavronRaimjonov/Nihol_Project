@@ -1,6 +1,7 @@
 import { Button } from "antd";
 import { Modal } from "antd";
 import dayjs from "dayjs";
+import { useQueryClient } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
 import { userDate } from "../../../../../Generic/time";
 import { useAxios } from "../../../../../hooks/useAxios";
@@ -11,6 +12,8 @@ const Obseving = () => {
   const { confirm } = Modal;
   const dispatch = useDispatch();
   const { data } = useSelector((state) => state.buildingData);
+  const queryClient = useQueryClient();
+  const userData = queryClient.getQueryData(`user${data._id}`);
   const dateNow = new Date();
   const remaingDay = dayjs(+data.endDate).diff(
     new Date(
@@ -21,9 +24,9 @@ const Obseving = () => {
   const axios = useAxios();
   const deleteUser = async () => {
     const deleteData = {
-      roomNumber: data?.roomNumber,
-      clienteID: data?.clienteID,
-      _id: data?._id,
+      roomNumber: userData?.roomNumber,
+      clienteID: userData?.clienteID,
+      _id: userData?._id,
     };
     await axios({
       url: `/accomodation/${buildingNum.slice(-1)}/delete-user`,
@@ -43,18 +46,19 @@ const Obseving = () => {
       },
     });
   };
-  const buildingNum = data?.buildingNumber;
-  const birtDate = userDate(data.birthDate);
-  const cameDate = userDate(data.arrivalDate);
-  const endDate = userDate(data.endDate);
-  const buildIndex = data.buildingNumber.slice(0, 1).toUpperCase();
-  const build = buildIndex + data.buildingNumber.split("-").join(" ").slice(1);
+  const buildingNum = userData?.buildingNumber;
+  const birtDate = userDate(userData.birthDate);
+  const cameDate = userDate(userData.arrivalDate);
+  const endDate = userDate(userData.endDate);
+  const buildIndex = userData.buildingNumber.slice(0, 1).toUpperCase();
+  const build =
+    buildIndex + userData.buildingNumber.split("-").join(" ").slice(1);
 
   return (
     <ObservingWrap>
       <ObservingWrap.List>
         <ObservingWrap.Key>Full name:</ObservingWrap.Key>
-        <ObservingWrap.Key>{data.fullName}</ObservingWrap.Key>
+        <ObservingWrap.Key>{userData.fullName}</ObservingWrap.Key>
       </ObservingWrap.List>
       <ObservingWrap.List>
         <ObservingWrap.Key>Birth date:</ObservingWrap.Key>
@@ -62,11 +66,11 @@ const Obseving = () => {
       </ObservingWrap.List>
       <ObservingWrap.List>
         <ObservingWrap.Key>Passport number:</ObservingWrap.Key>
-        <ObservingWrap.Key>{data.passportID}</ObservingWrap.Key>
+        <ObservingWrap.Key>{userData.passportID}</ObservingWrap.Key>
       </ObservingWrap.List>
       <ObservingWrap.List>
         <ObservingWrap.Key>Address:</ObservingWrap.Key>
-        <ObservingWrap.Key>{data.address}</ObservingWrap.Key>
+        <ObservingWrap.Key>{userData.address}</ObservingWrap.Key>
       </ObservingWrap.List>
       <ObservingWrap.List>
         <ObservingWrap.Key>Came Date:</ObservingWrap.Key>
@@ -82,11 +86,11 @@ const Obseving = () => {
       </ObservingWrap.List>
       <ObservingWrap.List>
         <ObservingWrap.Key>Daily price:</ObservingWrap.Key>
-        <ObservingWrap.Key>{data.dayCost}</ObservingWrap.Key>
+        <ObservingWrap.Key>{userData.dayCost}</ObservingWrap.Key>
       </ObservingWrap.List>
       <ObservingWrap.List>
         <ObservingWrap.Key>Total price:</ObservingWrap.Key>
-        <ObservingWrap.Key>{data.total}</ObservingWrap.Key>
+        <ObservingWrap.Key>{userData.total}</ObservingWrap.Key>
       </ObservingWrap.List>
       <ObservingWrap.List>
         <ObservingWrap.Key>Voucher status:</ObservingWrap.Key>
@@ -94,15 +98,15 @@ const Obseving = () => {
       </ObservingWrap.List>
       <ObservingWrap.List>
         <ObservingWrap.Key>Pay by cash:</ObservingWrap.Key>
-        <ObservingWrap.Key>{data.paidByCash}</ObservingWrap.Key>
+        <ObservingWrap.Key>{userData.paidByCash}</ObservingWrap.Key>
       </ObservingWrap.List>
       <ObservingWrap.List>
         <ObservingWrap.Key>Pay by card:</ObservingWrap.Key>
-        <ObservingWrap.Key>{data.paidByPlasticCard}</ObservingWrap.Key>
+        <ObservingWrap.Key>{userData.paidByPlasticCard}</ObservingWrap.Key>
       </ObservingWrap.List>
       <ObservingWrap.List>
         <ObservingWrap.Key>Payment difference:</ObservingWrap.Key>
-        <ObservingWrap.Key>{data.total}</ObservingWrap.Key>
+        <ObservingWrap.Key>{userData.total}</ObservingWrap.Key>
       </ObservingWrap.List>
       <ObservingWrap.List>
         <ObservingWrap.Key>Building Number:</ObservingWrap.Key>
@@ -110,7 +114,7 @@ const Obseving = () => {
       </ObservingWrap.List>
       <ObservingWrap.List>
         <ObservingWrap.Key>Room number:</ObservingWrap.Key>
-        <ObservingWrap.Key>{data.roomNumber}</ObservingWrap.Key>
+        <ObservingWrap.Key>{userData.roomNumber}</ObservingWrap.Key>
       </ObservingWrap.List>
       <ObservingWrap.Buttons>
         <Button onClick={() => dispatch(switchUser())}>Cancel</Button>

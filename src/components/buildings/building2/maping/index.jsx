@@ -20,7 +20,7 @@ const Maping = () => {
           <MapWrapperCart.Container>
             {item.cliente.map((item) =>
               !item.userID && !item.isBooked ? (
-                <EmptyRoom key={item.clienteID} />
+                <EmptyRoom key={item.clienteID} item={item} />
               ) : item.userID ? (
                 <RoomComponent key={item.clienteID} item={item} />
               ) : (

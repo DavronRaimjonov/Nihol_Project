@@ -1,4 +1,6 @@
+import { message } from "antd";
 import axios from "axios";
+import { notify } from "../../Generic/notification";
 import { getLocal } from "../../utils/storege";
 const { VITE_APP_BASE_URL } = import.meta.env;
 export const useAxios = () => {
@@ -17,7 +19,12 @@ export const useAxios = () => {
       },
     })
       .then((res) => res)
-      .catch((error) => error);
+      .catch((error) => {
+        const status = error?.response?.status;
+        if (status == 406) {
+          message.error(error.message);
+        }
+      });
   };
 };
 
